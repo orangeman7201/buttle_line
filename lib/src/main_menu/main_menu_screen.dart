@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 
 import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
-import '../games_services/games_services.dart';
 import '../settings/settings.dart';
 import '../style/palette.dart';
 import '../style/responsive_screen.dart';
@@ -19,7 +18,6 @@ class MainMenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
-    final gamesServicesController = context.watch<GamesServicesController?>();
     final settingsController = context.watch<SettingsController>();
     final audioController = context.watch<AudioController>();
 
@@ -31,7 +29,7 @@ class MainMenuScreen extends StatelessWidget {
           child: Transform.rotate(
             angle: -0.1,
             child: const Text(
-              'Flutter Game Template!',
+              'Buttle line',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: 'Permanent Marker',
@@ -49,30 +47,11 @@ class MainMenuScreen extends StatelessWidget {
                 audioController.playSfx(SfxType.buttonTap);
                 GoRouter.of(context).go('/play');
               },
-              child: const Text('Play'),
+              child: const Text('部屋を作る'),
             ),
-            _gap,
-            if (gamesServicesController != null) ...[
-              _hideUntilReady(
-                ready: gamesServicesController.signedIn,
-                child: ElevatedButton(
-                  onPressed: () => gamesServicesController.showAchievements(),
-                  child: const Text('Achievements'),
-                ),
-              ),
-              _gap,
-              _hideUntilReady(
-                ready: gamesServicesController.signedIn,
-                child: ElevatedButton(
-                  onPressed: () => gamesServicesController.showLeaderboard(),
-                  child: const Text('Leaderboard'),
-                ),
-              ),
-              _gap,
-            ],
             ElevatedButton(
               onPressed: () => GoRouter.of(context).push('/settings'),
-              child: const Text('Settings'),
+              child: const Text('部屋に入る'),
             ),
             _gap,
             Padding(
@@ -87,8 +66,6 @@ class MainMenuScreen extends StatelessWidget {
                 },
               ),
             ),
-            _gap,
-            const Text('Music by Mr Smith'),
             _gap,
           ],
         ),
