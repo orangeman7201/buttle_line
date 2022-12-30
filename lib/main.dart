@@ -37,6 +37,7 @@ import 'src/style/my_transition.dart';
 import 'src/style/palette.dart';
 import 'src/style/snack_bar.dart';
 import 'src/win_game/win_game_screen.dart';
+import 'package:flutter/services.dart';
 
 Future<void> main() async {
   // To enable Firebase Crashlytics, uncomment the following lines and
@@ -55,6 +56,13 @@ Future<void> main() async {
   //     debugPrint("Firebase couldn't be initialized: $e");
   //   }
   // }
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeLeft, //左向きを許可
+    DeviceOrientation.landscapeRight, //右向きを許可
+  ]);
 
   await guardWithCrashlytics(
     guardedMain,
@@ -109,6 +117,9 @@ void guardedMain() {
   //   // Ask the store what the player has bought already.
   //   inAppPurchaseController.restorePurchases();
   // }
+
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
 
   runApp(
     MyApp(
