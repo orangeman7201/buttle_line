@@ -19,6 +19,7 @@ import 'src/ads/ads_controller.dart';
 import 'src/app_lifecycle/app_lifecycle.dart';
 import 'src/audio/audio_controller.dart';
 import 'src/crashlytics/crashlytics.dart';
+import 'src/create_room/create_room_screen.dart';
 import 'src/games_services/games_services.dart';
 import 'src/games_services/score.dart';
 import 'src/in_app_purchase/in_app_purchase.dart';
@@ -181,6 +182,10 @@ class MyApp extends StatelessWidget {
                     },
                   )
                 ]),
+            GoRoute(
+              path: 'create_room',
+              builder: (context, state) => const CreateRoomScreen(),
+            ),
             GoRoute(
               path: 'settings',
               builder: (context, state) =>
