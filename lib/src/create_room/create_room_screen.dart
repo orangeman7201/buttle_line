@@ -10,8 +10,19 @@ import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
 import '../style/palette.dart';
 
-class CreateRoomScreen extends StatelessWidget {
+class CreateRoomScreen extends StatefulWidget {
   const CreateRoomScreen({super.key});
+
+  @override
+  _CreateRoomScreenState createState() => _CreateRoomScreenState();
+}
+
+class _CreateRoomScreenState extends State<CreateRoomScreen> {
+  // 部屋の名前
+  String roomName = '';
+
+  // 部屋のパスワード
+  String roomPassword = '';
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +59,11 @@ class CreateRoomScreen extends StatelessWidget {
                         border: OutlineInputBorder(),
                         labelText: '部屋の名前',
                       ),
+                      onChanged: (text) {
+                        setState(() {
+                          roomName = text;
+                        });
+                      },
                     ),
                   ),
                   SizedBox(height: 20),
@@ -58,6 +74,11 @@ class CreateRoomScreen extends StatelessWidget {
                         border: OutlineInputBorder(),
                         labelText: '部屋のパスワード',
                       ),
+                      onChanged: (text) {
+                        setState(() {
+                          roomPassword = text;
+                        });
+                      },
                     ),
                   ),
                   SizedBox(height: 20),
