@@ -45,7 +45,7 @@ class MainMenuScreen extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       audioController.playSfx(SfxType.buttonTap);
-                      GoRouter.of(context).go('/play');
+                      GoRouter.of(context).go('/create_room');
                     },
                     child: const Text('部屋を作る'),
                   ),
