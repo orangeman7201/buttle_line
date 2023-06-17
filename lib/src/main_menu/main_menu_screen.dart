@@ -29,7 +29,7 @@ class MainMenuScreen extends StatelessWidget {
                 child: Transform.rotate(
                   angle: -0.1,
                   child: const Text(
-                    'Buttle line',
+                    'Battle line',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'Permanent Marker',
@@ -75,5 +75,5 @@ class MainMenuScreen extends StatelessWidget {
         ));
   }
 
-  static const _gap = SizedBox(height: 10);
+  // static const _gap = SizedBox(height: 10);
 }
