@@ -23,6 +23,7 @@ import 'src/games_services/games_services.dart';
 import 'src/in_app_purchase/in_app_purchase.dart';
 import 'src/main_menu/main_menu_screen.dart';
 import 'src/create_room/create_room_screen.dart';
+import 'src/enter_room/enter_room_screen.dart';
 import 'src/waiting_room/waiting_room_screen.dart';
 import 'src/player_progress/persistence/local_storage_player_progress_persistence.dart';
 import 'src/player_progress/persistence/player_progress_persistence.dart';
@@ -141,6 +142,11 @@ class MyApp extends StatelessWidget {
               path: 'create_room',
               builder: (context, state) =>
                   const CreateRoomScreen(key: Key('create room')),
+            ),
+            GoRoute(
+              path: 'enter_room',
+              builder: (context, state) =>
+                  const EnterRoomScreen(key: Key('enter room')),
             ),
             GoRoute(
               path: 'waiting_room',
