@@ -20,6 +20,7 @@ import 'src/app_lifecycle/app_lifecycle.dart';
 import 'src/audio/audio_controller.dart';
 import 'src/crashlytics/crashlytics.dart';
 import 'src/games_services/games_services.dart';
+import 'src/game_field/game_field_screen.dart';
 import 'src/in_app_purchase/in_app_purchase.dart';
 import 'src/main_menu/main_menu_screen.dart';
 import 'src/create_room/create_room_screen.dart';
@@ -152,6 +153,11 @@ class MyApp extends StatelessWidget {
               path: 'waiting_room',
               builder: (context, state) =>
                   const WaitingRoomScreen(key: Key('waiting room')),
+            ),
+            GoRoute(
+              path: 'game_field',
+              builder: (context, state) =>
+                  const GameFieldScreen(key: Key('game field')),
             ),
             GoRoute(
               path: 'settings',
