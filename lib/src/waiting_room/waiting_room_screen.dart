@@ -130,7 +130,7 @@ class _WaitingRoomScreen extends State<WaitingRoomScreen> {
                       onPressed: isReady
                           ? () {
                               audioController.playSfx(SfxType.buttonTap);
-                              GoRouter.of(context).go('/waiting_room');
+                              GoRouter.of(context).go('/game_field');
                             }
                           : null,
                       style: ElevatedButton.styleFrom(
