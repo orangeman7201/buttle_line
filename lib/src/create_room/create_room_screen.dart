@@ -40,7 +40,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                 alignment: Alignment.center,
                 height: 120,
                 child: const Text(
-                  '決戦場を作成',
+                  '部屋を作成',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: 'Permanent Marker',
