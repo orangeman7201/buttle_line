@@ -10,19 +10,8 @@ import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
 import '../style/palette.dart';
 
-class CreateRoomScreen extends StatefulWidget {
-  const CreateRoomScreen({super.key});
-
-  @override
-  _CreateRoomScreenState createState() => _CreateRoomScreenState();
-}
-
-class _CreateRoomScreenState extends State<CreateRoomScreen> {
-  // 部屋の名前
-  String roomName = '';
-
-  // 部屋のパスワード
-  String roomPassword = '';
+class WaitingRoomScreen extends StatelessWidget {
+  const WaitingRoomScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,35 +41,6 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    width: 300,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: '部屋の名前',
-                      ),
-                      onChanged: (text) {
-                        setState(() {
-                          roomName = text;
-                        });
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    width: 300,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: '部屋のパスワード',
-                      ),
-                      onChanged: (text) {
-                        setState(() {
-                          roomPassword = text;
-                        });
-                      },
-                    ),
-                  ),
                   SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
