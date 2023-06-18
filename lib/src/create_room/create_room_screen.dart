@@ -40,7 +40,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                 alignment: Alignment.center,
                 height: 120,
                 child: const Text(
-                  '決戦場を作成',
+                  '部屋を作成',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: 'Permanent Marker',
@@ -85,7 +85,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                   ElevatedButton(
                     onPressed: () {
                       audioController.playSfx(SfxType.buttonTap);
-                      GoRouter.of(context).go('/create_room');
+                      GoRouter.of(context).go('/waiting_room');
                     },
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(300, 50),

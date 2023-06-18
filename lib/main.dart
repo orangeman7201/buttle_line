@@ -23,6 +23,7 @@ import 'src/games_services/games_services.dart';
 import 'src/in_app_purchase/in_app_purchase.dart';
 import 'src/main_menu/main_menu_screen.dart';
 import 'src/create_room/create_room_screen.dart';
+import 'src/waiting_room/waiting_room_screen.dart';
 import 'src/player_progress/persistence/local_storage_player_progress_persistence.dart';
 import 'src/player_progress/persistence/player_progress_persistence.dart';
 import 'src/player_progress/player_progress.dart';
@@ -30,7 +31,6 @@ import 'src/settings/persistence/local_storage_settings_persistence.dart';
 import 'src/settings/persistence/settings_persistence.dart';
 import 'src/settings/settings.dart';
 import 'src/settings/settings_screen.dart';
-import 'src/style/my_transition.dart';
 import 'src/style/palette.dart';
 import 'src/style/snack_bar.dart';
 
@@ -141,6 +141,11 @@ class MyApp extends StatelessWidget {
               path: 'create_room',
               builder: (context, state) =>
                   const CreateRoomScreen(key: Key('create room')),
+            ),
+            GoRoute(
+              path: 'waiting_room',
+              builder: (context, state) =>
+                  const WaitingRoomScreen(key: Key('waiting room')),
             ),
             GoRoute(
               path: 'settings',
