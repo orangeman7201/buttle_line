@@ -24,24 +24,70 @@ class WaitingRoomScreen extends StatelessWidget {
           width: double.infinity,
           child: Column(
             children: [
-              SizedBox(height: 30),
+              SizedBox(height: 40),
+              Container(
+                  alignment: Alignment.center,
+                  height: 80,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            '部屋のID',
+                            style: TextStyle(
+                              fontSize: 30,
+                              height: 1,
+                            ),
+                          ),
+                          const Text(
+                            '部屋のパスワード',
+                            style: TextStyle(
+                              fontSize: 30,
+                              height: 1,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(width: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            ': TestID',
+                            style: TextStyle(
+                              fontSize: 30,
+                              height: 1,
+                            ),
+                          ),
+                          const Text(
+                            ': password',
+                            style: TextStyle(
+                              fontSize: 30,
+                              height: 1,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )),
               Container(
                 alignment: Alignment.center,
                 height: 120,
+                width: 500,
+                decoration: BoxDecoration(color: Colors.blue),
                 child: const Text(
-                  '部屋を作成',
-                  textAlign: TextAlign.center,
+                  '友達を待っています。',
                   style: TextStyle(
-                    fontFamily: 'Permanent Marker',
-                    fontSize: 30,
-                    height: 1,
+                    color: Colors.white,
                   ),
                 ),
               ),
-              Column(
+              SizedBox(height: 40),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
                       audioController.playSfx(SfxType.buttonTap);
@@ -52,7 +98,17 @@ class WaitingRoomScreen extends StatelessWidget {
                     ),
                     child: const Text('作成'),
                   ),
-                  SizedBox(width: 70),
+                  SizedBox(width: 40),
+                  ElevatedButton(
+                    onPressed: () {
+                      audioController.playSfx(SfxType.buttonTap);
+                      GoRouter.of(context).go('/waiting_room');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(300, 50),
+                    ),
+                    child: const Text('試合開始'),
+                  ),
                 ],
               ),
             ],
