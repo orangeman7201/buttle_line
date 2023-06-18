@@ -51,7 +51,7 @@ class MainMenuScreen extends StatelessWidget {
                   ),
                   SizedBox(width: 70),
                   ElevatedButton(
-                    onPressed: () => GoRouter.of(context).push('/settings'),
+                    onPressed: () => GoRouter.of(context).push('/enter_room'),
                     child: const Text('部屋に入る'),
                   ),
                 ],
