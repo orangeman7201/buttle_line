@@ -26,9 +26,11 @@ import 'src/main_menu/main_menu_screen.dart';
 import 'src/create_room/create_room_screen.dart';
 import 'src/enter_room/enter_room_screen.dart';
 import 'src/waiting_room/waiting_room_screen.dart';
+import 'src/win_screen/win_screen.dart';
 import 'src/player_progress/persistence/local_storage_player_progress_persistence.dart';
 import 'src/player_progress/persistence/player_progress_persistence.dart';
 import 'src/player_progress/player_progress.dart';
+import 'src/lose_screen/lose_screen.dart';
 import 'src/settings/persistence/local_storage_settings_persistence.dart';
 import 'src/settings/persistence/settings_persistence.dart';
 import 'src/settings/settings.dart';
@@ -158,6 +160,16 @@ class MyApp extends StatelessWidget {
               path: 'game_field',
               builder: (context, state) =>
                   const GameFieldScreen(key: Key('game field')),
+            ),
+            GoRoute(
+              path: 'win_screen',
+              builder: (context, state) =>
+                  const WinScreen(key: Key('win screen')),
+            ),
+            GoRoute(
+              path: 'lose_screen',
+              builder: (context, state) =>
+                  const LoseScreen(key: Key('lose screen')),
             ),
             GoRoute(
               path: 'settings',
