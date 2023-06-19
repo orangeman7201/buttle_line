@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../style/palette.dart';
 
-class GameFieldScreen extends StatelessWidget {
-  const GameFieldScreen({super.key});
+class WinScreen extends StatelessWidget {
+  const WinScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +20,12 @@ class GameFieldScreen extends StatelessWidget {
               Container(
                 alignment: Alignment.center,
                 height: 220,
-                child: Transform.rotate(
-                  angle: -0.1,
-                  child: const Text(
-                    'Battle line  Main Field',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'Permanent Marker',
-                      fontSize: 55,
-                      height: 1,
-                    ),
+                child: const Text(
+                  '勝ち画面',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 55,
+                    height: 1,
                   ),
                 ),
               ),
@@ -38,16 +34,9 @@ class GameFieldScreen extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      GoRouter.of(context).go('/win_screen');
+                      GoRouter.of(context).go('/');
                     },
-                    child: const Text('勝ち'),
-                  ),
-                  SizedBox(width: 70),
-                  ElevatedButton(
-                    onPressed: () {
-                      GoRouter.of(context).go('/lose_screen');
-                    },
-                    child: const Text('負け'),
+                    child: const Text('メイン画面に戻る'),
                   ),
                 ],
               ),
