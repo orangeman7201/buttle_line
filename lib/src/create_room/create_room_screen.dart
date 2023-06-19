@@ -3,6 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:game_template/resources/socket_methods.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -18,8 +19,9 @@ class CreateRoomScreen extends StatefulWidget {
 }
 
 class _CreateRoomScreenState extends State<CreateRoomScreen> {
+  final SocketMethods _socketMethods = SocketMethods();
   // 部屋の名前
-  String roomName = '';
+  String userName = '';
 
   // 部屋のパスワード
   String roomPassword = '';
@@ -57,11 +59,11 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                     child: TextField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: '部屋の名前',
+                        labelText: 'ニックネーム',
                       ),
                       onChanged: (text) {
                         setState(() {
-                          roomName = text;
+                          userName = text;
                         });
                       },
                     ),
@@ -85,6 +87,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                   ElevatedButton(
                     onPressed: () {
                       audioController.playSfx(SfxType.buttonTap);
+                      _socketMethods.createRoom(userName, roomPassword);
                       GoRouter.of(context).go('/waiting_room');
                     },
                     style: ElevatedButton.styleFrom(
