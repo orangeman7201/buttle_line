@@ -20,7 +20,7 @@ class CreateRoomScreen extends StatefulWidget {
 
 class _CreateRoomScreenState extends State<CreateRoomScreen> {
   final SocketMethods _socketMethods = SocketMethods();
-  // 部屋の名前
+  // ユーザーの名前
   String userName = '';
 
   // 部屋のパスワード
