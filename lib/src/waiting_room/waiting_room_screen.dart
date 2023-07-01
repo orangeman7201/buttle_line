@@ -70,26 +70,12 @@ class _WaitingRoomScreen extends State<WaitingRoomScreen> {
                                 height: 1,
                               ),
                             ),
-                            Text(
-                              '部屋のパスワード',
-                              style: TextStyle(
-                                fontSize: 30,
-                                height: 1,
-                              ),
-                            ),
                           ],
                         ),
                         SizedBox(width: 20),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              roomInfo,
-                              style: TextStyle(
-                                fontSize: 30,
-                                height: 1,
-                              ),
-                            ),
                             Text(
                               roomInfo,
                               style: TextStyle(

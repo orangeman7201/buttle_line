@@ -8,10 +8,9 @@ import './socket_client.dart';
 class SocketMethods {
   final _socketClient = SocketClient.instance.socket!;
 
-  void createRoom(String userName, String roomPassword) {
+  void createRoom(String userName) {
     _socketClient.emit('createRoom', {
       'userName': userName,
-      'roomPassword': roomPassword,
     });
   }
 
@@ -20,6 +19,15 @@ class SocketMethods {
       Provider.of<RoomDataProvider>(context, listen: false)
           .updateRoomData(room);
       GoRouter.of(context).go('/waiting_room');
+    });
+  }
+
+  void joinRoom(String userName) {
+    if (userName == '') {
+      userName = 'ゲスト';
+    }
+    _socketClient.emit('joinRoom', {
+      'userName': userName,
     });
   }
 }

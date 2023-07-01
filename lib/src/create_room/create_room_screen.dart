@@ -23,9 +23,6 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
   // ユーザーの名前
   String userName = '';
 
-  // 部屋のパスワード
-  String roomPassword = '';
-
   @override
   void initState() {
     super.initState();
@@ -75,26 +72,10 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Container(
-                    width: 300,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: '部屋のパスワード',
-                      ),
-                      onChanged: (text) {
-                        setState(() {
-                          roomPassword = text;
-                        });
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
                       audioController.playSfx(SfxType.buttonTap);
-                      _socketMethods.createRoom(userName, roomPassword);
-                      // GoRouter.of(context).go('/waiting_room');
+                      _socketMethods.createRoom(userName);
                     },
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(300, 50),

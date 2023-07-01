@@ -18,11 +18,8 @@ class EnterRoomScreen extends StatefulWidget {
 }
 
 class _EnterRoomScreenState extends State<EnterRoomScreen> {
-  // 部屋の名前
   String roomName = '';
-
-  // 部屋のパスワード
-  String roomPassword = '';
+  String userName = '';
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +54,7 @@ class _EnterRoomScreenState extends State<EnterRoomScreen> {
                     child: TextField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: '部屋の名前',
+                        labelText: '部屋のid',
                       ),
                       onChanged: (text) {
                         setState(() {
@@ -72,11 +69,11 @@ class _EnterRoomScreenState extends State<EnterRoomScreen> {
                     child: TextField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: '部屋のパスワード',
+                        labelText: 'ニックネーム',
                       ),
                       onChanged: (text) {
                         setState(() {
-                          roomPassword = text;
+                          userName = text;
                         });
                       },
                     ),
