@@ -16,10 +16,7 @@ const DB = process.env.DB_URI;
 
 io.on('connection', (socket) => {
   console.log('a user connected');
-  socket.on('create_room', async ({ userName }) => {
-    console.log(userName);
-    console.log(socket.id);
-
+  socket.on('createRoom', async ({ userName }) => {
     // 部屋を作成{}
     // 予想: 部屋を作る＝websocketで特定のサーバーをlistenしている状態
     try {
@@ -33,7 +30,6 @@ io.on('connection', (socket) => {
         players: [player],
       });
       room = await room.save();
-      console.log(room);
       const roomId = room._id.toString();
       socket.join(roomId);
 

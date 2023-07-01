@@ -3,6 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:game_template/provider/room_data_provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +23,8 @@ class _WaitingRoomScreen extends State<WaitingRoomScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final roomInfo = Provider.of<RoomDataProvider>(context).roomData.toString();
+
     final palette = context.watch<Palette>();
     final audioController = context.watch<AudioController>();
 
@@ -67,7 +70,7 @@ class _WaitingRoomScreen extends State<WaitingRoomScreen> {
                                 height: 1,
                               ),
                             ),
-                            const Text(
+                            Text(
                               '部屋のパスワード',
                               style: TextStyle(
                                 fontSize: 30,
@@ -80,15 +83,15 @@ class _WaitingRoomScreen extends State<WaitingRoomScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
-                              ': TestID',
+                            Text(
+                              roomInfo,
                               style: TextStyle(
                                 fontSize: 30,
                                 height: 1,
                               ),
                             ),
-                            const Text(
-                              ': password',
+                            Text(
+                              roomInfo,
                               style: TextStyle(
                                 fontSize: 30,
                                 height: 1,

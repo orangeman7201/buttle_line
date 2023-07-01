@@ -27,6 +27,12 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
   String roomPassword = '';
 
   @override
+  void initState() {
+    super.initState();
+    _socketMethods.createRoomSuccessListener(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     final audioController = context.watch<AudioController>();
@@ -88,7 +94,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                     onPressed: () {
                       audioController.playSfx(SfxType.buttonTap);
                       _socketMethods.createRoom(userName, roomPassword);
-                      GoRouter.of(context).go('/waiting_room');
+                      // GoRouter.of(context).go('/waiting_room');
                     },
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(300, 50),
