@@ -24,7 +24,6 @@ class _WaitingRoomScreen extends State<WaitingRoomScreen> {
   @override
   Widget build(BuildContext context) {
     final roomInfo = Provider.of<RoomDataProvider>(context).roomData.toString();
-
     final palette = context.watch<Palette>();
     final audioController = context.watch<AudioController>();
 

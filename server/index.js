@@ -15,7 +15,6 @@ app.use(express.json());
 const DB = process.env.DB_URI;
 
 io.on('connection', (socket) => {
-  console.log('a user connected');
   socket.on('createRoom', async ({ userName }) => {
     // 部屋を作成{}
     // 予想: 部屋を作る＝websocketで特定のサーバーをlistenしている状態
@@ -43,6 +42,34 @@ io.on('connection', (socket) => {
     // プレイヤー情報を保存
     // 予想： listenしているサーバー情報をmongoDBに保存すること
   })
+
+  socket.on('joinRoom', async ({ userName, roomId }) => {
+    // 部屋に参加
+    try {
+      if(!roomId.match(/^[0-9a-fA-F]{24}$/)) {
+        socket.emit('errorOccurred', '不正なIDです。');
+      }
+
+      let room = await Room.findById(roomId);
+      if(room.isJoin) {
+        let player = {
+          userName,
+          socketID: socket.id,
+          playerType: 'guest',
+        };
+        socket.join(roomId);
+        room.players.push(player);
+        room.isJoin = false;
+        room = await room.save();
+        io.to(roomId).emit('joinRoomSuccess', room);
+        io.to(roomId).emit('updatePlayers', room.players);
+      } else {
+        socket.emit('errorOccurred', 'すでに試合が始まっています。');
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  });
 });
 
 mongoose

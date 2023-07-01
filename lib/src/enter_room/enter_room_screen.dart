@@ -3,9 +3,9 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+import '../../resources/socket_methods.dart';
 import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
 import '../style/palette.dart';
@@ -20,6 +20,16 @@ class EnterRoomScreen extends StatefulWidget {
 class _EnterRoomScreenState extends State<EnterRoomScreen> {
   String roomName = '';
   String userName = '';
+
+  final SocketMethods _socketMethods = SocketMethods();
+
+  @override
+  void initState() {
+    super.initState();
+    _socketMethods.joinRoomSuccessListener(context);
+    _socketMethods.errorOccurListener(context);
+    _socketMethods.updatePlayersState(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +92,7 @@ class _EnterRoomScreenState extends State<EnterRoomScreen> {
                   ElevatedButton(
                     onPressed: () {
                       audioController.playSfx(SfxType.buttonTap);
-                      GoRouter.of(context).go('/waiting_room');
+                      _socketMethods.joinRoom(userName, roomName);
                     },
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(300, 50),
