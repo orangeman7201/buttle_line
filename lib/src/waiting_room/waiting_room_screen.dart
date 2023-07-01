@@ -7,6 +7,7 @@ import 'package:game_template/provider/room_data_provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+import '../../resources/socket_methods.dart';
 import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
 import '../style/palette.dart';
@@ -21,15 +22,31 @@ class WaitingRoomScreen extends StatefulWidget {
 class _WaitingRoomScreen extends State<WaitingRoomScreen> {
   bool isReady = false;
 
+  final SocketMethods _socketMethods = SocketMethods();
+
+  @override
+  void initState() {
+    super.initState();
+    _socketMethods.updateRoomListener(context);
+    _socketMethods.updatePlayersStateListener(context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final roomInfo = Provider.of<RoomDataProvider>(context).roomData.toString();
+    RoomDataProvider roomDataProvider = Provider.of<RoomDataProvider>(context);
+    final roomID = roomDataProvider.roomData['_id'].toString();
     final palette = context.watch<Palette>();
     final audioController = context.watch<AudioController>();
+    final name1 = roomDataProvider.player1.userName.isEmpty
+        ? 'ホスト待っています。'
+        : roomDataProvider.player1.userName;
+    final name2 = roomDataProvider.player2.userName.isEmpty
+        ? '友達待っています。'
+        : roomDataProvider.player2.userName;
 
     return Scaffold(
         backgroundColor: palette.backgroundMain,
-        body: Stack(children: <Widget>[
+        body: Stack(children: [
           Positioned(
             top: 10.0,
             right: 10.0,
@@ -76,7 +93,7 @@ class _WaitingRoomScreen extends State<WaitingRoomScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              roomInfo,
+                              roomID,
                               style: TextStyle(
                                 fontSize: 30,
                                 height: 1,
@@ -87,17 +104,24 @@ class _WaitingRoomScreen extends State<WaitingRoomScreen> {
                       ],
                     )),
                 Container(
-                  alignment: Alignment.center,
-                  height: 120,
-                  width: 500,
-                  decoration: BoxDecoration(color: Colors.blue),
-                  child: const Text(
-                    '友達を待っています。',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+                    alignment: Alignment.center,
+                    height: 60,
+                    width: 500,
+                    decoration: BoxDecoration(color: Colors.blue),
+                    child: Text(name1,
+                        style: TextStyle(
+                          color: Colors.white,
+                        ))),
+                SizedBox(height: 40),
+                Container(
+                    alignment: Alignment.center,
+                    height: 60,
+                    width: 500,
+                    decoration: BoxDecoration(color: Colors.blue),
+                    child: Text(name2,
+                        style: TextStyle(
+                          color: Colors.white,
+                        ))),
                 SizedBox(height: 40),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

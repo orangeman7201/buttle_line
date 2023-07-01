@@ -19,6 +19,8 @@ class SocketMethods {
     _socketClient.on('createRoomSuccess', (room) {
       Provider.of<RoomDataProvider>(context, listen: false)
           .updateRoomData(room);
+      Provider.of<RoomDataProvider>(context, listen: false)
+          .updatePlayer1(room['players'][0]);
       GoRouter.of(context).go('/waiting_room');
     });
   }
@@ -43,12 +45,19 @@ class SocketMethods {
     });
   }
 
-  void updatePlayersState(BuildContext context) {
+  void updatePlayersStateListener(BuildContext context) {
     _socketClient.on('updatePlayers', (playerData) {
       Provider.of<RoomDataProvider>(context, listen: false)
           .updatePlayer1(playerData[0]);
       Provider.of<RoomDataProvider>(context, listen: false)
-          .updatePlayer1(playerData[1]);
+          .updatePlayer2(playerData[1]);
+    });
+  }
+
+  void updateRoomListener(BuildContext context) {
+    _socketClient.on('updateRoom', (room) {
+      Provider.of<RoomDataProvider>(context, listen: false)
+          .updateRoomData(room);
     });
   }
 }

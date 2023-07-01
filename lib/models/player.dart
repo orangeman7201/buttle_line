@@ -21,10 +21,10 @@ class Player {
 
   factory Player.fromMap(Map<String, dynamic> map) {
     return Player(
-      userName: map['userName'],
-      socketID: map['socketID'],
-      score: map['score'],
-      playerType: map['playerType'],
+      userName: map['userName'] ?? '',
+      socketID: map['socketID'] ?? '',
+      score: map['score']?.toDouble() ?? 0.0,
+      playerType: map['playerType'] ?? '',
     );
   }
 

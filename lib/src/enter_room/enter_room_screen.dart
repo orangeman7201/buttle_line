@@ -28,7 +28,7 @@ class _EnterRoomScreenState extends State<EnterRoomScreen> {
     super.initState();
     _socketMethods.joinRoomSuccessListener(context);
     _socketMethods.errorOccurListener(context);
-    _socketMethods.updatePlayersState(context);
+    _socketMethods.updatePlayersStateListener(context);
   }
 
   @override
