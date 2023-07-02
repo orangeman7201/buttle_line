@@ -3,9 +3,9 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+import '../../resources/socket_methods.dart';
 import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
 import '../style/palette.dart';
@@ -18,11 +18,18 @@ class EnterRoomScreen extends StatefulWidget {
 }
 
 class _EnterRoomScreenState extends State<EnterRoomScreen> {
-  // 部屋の名前
   String roomName = '';
+  String userName = '';
 
-  // 部屋のパスワード
-  String roomPassword = '';
+  final SocketMethods _socketMethods = SocketMethods();
+
+  @override
+  void initState() {
+    super.initState();
+    _socketMethods.joinRoomSuccessListener(context);
+    _socketMethods.errorOccurListener(context);
+    _socketMethods.updatePlayersStateListener(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +64,7 @@ class _EnterRoomScreenState extends State<EnterRoomScreen> {
                     child: TextField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: '部屋の名前',
+                        labelText: '部屋のid',
                       ),
                       onChanged: (text) {
                         setState(() {
@@ -72,11 +79,11 @@ class _EnterRoomScreenState extends State<EnterRoomScreen> {
                     child: TextField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: '部屋のパスワード',
+                        labelText: 'ニックネーム',
                       ),
                       onChanged: (text) {
                         setState(() {
-                          roomPassword = text;
+                          userName = text;
                         });
                       },
                     ),
@@ -85,7 +92,7 @@ class _EnterRoomScreenState extends State<EnterRoomScreen> {
                   ElevatedButton(
                     onPressed: () {
                       audioController.playSfx(SfxType.buttonTap);
-                      GoRouter.of(context).go('/waiting_room');
+                      _socketMethods.joinRoom(userName, roomName);
                     },
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(300, 50),

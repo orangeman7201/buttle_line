@@ -3,6 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:game_template/resources/socket_methods.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -18,11 +19,15 @@ class CreateRoomScreen extends StatefulWidget {
 }
 
 class _CreateRoomScreenState extends State<CreateRoomScreen> {
-  // 部屋の名前
-  String roomName = '';
+  final SocketMethods _socketMethods = SocketMethods();
+  // ユーザーの名前
+  String userName = '';
 
-  // 部屋のパスワード
-  String roomPassword = '';
+  @override
+  void initState() {
+    super.initState();
+    _socketMethods.createRoomSuccessListener(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,26 +62,11 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                     child: TextField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: '部屋の名前',
+                        labelText: 'ニックネーム',
                       ),
                       onChanged: (text) {
                         setState(() {
-                          roomName = text;
-                        });
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    width: 300,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: '部屋のパスワード',
-                      ),
-                      onChanged: (text) {
-                        setState(() {
-                          roomPassword = text;
+                          userName = text;
                         });
                       },
                     ),
@@ -85,7 +75,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                   ElevatedButton(
                     onPressed: () {
                       audioController.playSfx(SfxType.buttonTap);
-                      GoRouter.of(context).go('/waiting_room');
+                      _socketMethods.createRoom(userName);
                     },
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(300, 50),
