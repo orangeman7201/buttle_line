@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../resources/socket_methods.dart';
+import '../../utils/copyableText.dart';
 import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
 import '../style/palette.dart';
@@ -92,7 +93,7 @@ class _WaitingRoomScreen extends State<WaitingRoomScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            CopyableText(
                               roomID,
                               style: TextStyle(
                                 fontSize: 30,
